@@ -18,6 +18,8 @@ export interface CampusRoom {
   name: string; // e.g., "Room 102"
   building: string; // e.g., "Building II"
   department: string; // e.g., "Computer Science"
+  latitude: number;
+  longitude: number;
 }
 
 // Defines the structure for a Study Space (for Task 3)

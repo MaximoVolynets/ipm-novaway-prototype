@@ -1,7 +1,7 @@
 // components/Header.tsx
 'use client';
-
 import { usePathname, useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 // Helper function to get a clean title for sub-pages
 function getPageTitle(pathname: string): string {
@@ -52,8 +52,19 @@ export default function Header() {
         )}
       </div>
 
-      {/* --- CENTERED TITLE --- */}
-      <span className="text-base font-semibold text-gray-900">{title}</span>
+      {/* --- CENTERED TITLE/LOGO --- */}
+      {isTopLevelPage ? (
+        <Image
+          src="/novaway-logo.png"
+          alt="NovaWay"
+          width={300}
+          height={80}
+          priority
+          className="h-13 w-auto"
+        />
+      ) : (
+        <span className="text-base font-semibold text-gray-900">{title}</span>
+      )}
 
       {/* --- RIGHT SIDE --- */}
       <div className="w-20 text-right">
