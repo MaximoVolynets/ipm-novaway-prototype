@@ -1,9 +1,42 @@
-// Import our new component and the mock data
+'use client';
+
+
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+
 import EventCard from '@/components/EventCard';
 import { mockEvents } from '@/lib/data';
 import Link from 'next/link';
 
+const SEEN_LOGIN_KEY = 'novawaySeenLogin_v1';
+
 export default function Home() {
+  const router = useRouter();
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    try {
+      const hasSeenLogin = window.localStorage.getItem(SEEN_LOGIN_KEY);
+
+      // Only the *very first* time: no flag → send to /login
+      if (!hasSeenLogin) {
+        router.replace('/login');
+      } else {
+        setIsReady(true);
+      }
+    } catch (err) {
+      console.error('Error reading seen-login flag', err);
+      setIsReady(true); // fail open
+    }
+  }, [router]);
+
+  if (!isReady) {
+    return null; // or a small loader if you want
+  }
+
+
   // Get just the first 5 events for the home page preview
   const upcomingEvents = mockEvents.slice(0, 5);
   

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header"; // Import the Header
-import BottomNav from "@/components/BottomNav"; // Import the BottomNav
+import { AppShell } from "./AppShell"; 
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,20 +25,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* THE FIX: 
-        I've removed "dark:bg-zinc-900" from this body tag.
-      */}
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-100`}
       >
-        {/* THE FIX: 
-          I've removed "dark:bg-black" from this div tag.
-        */}
-        <div className="flex min-h-screen max-w-md flex-col bg-white shadow-lg sm:mx-auto">
-          <Header />
-          <main className="flex-1 overflow-y-auto">{children}</main>
-          <BottomNav />
-        </div>
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );

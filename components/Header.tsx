@@ -20,7 +20,7 @@ export default function Header() {
   const router = useRouter();
 
   // 1. Define our main navigation pages
-  const topLevelPaths = ['/', '/events', '/study', '/search', '/bookmarks'];
+  const topLevelPaths = ['/', '/login', '/events', '/study', '/search', '/bookmarks'];
   const isTopLevelPage = topLevelPaths.includes(pathname);
   const title = isTopLevelPage ? 'NovaWay' : getPageTitle(pathname);
 
