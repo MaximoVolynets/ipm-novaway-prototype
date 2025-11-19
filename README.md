@@ -1,4 +1,5 @@
 # NovaWay — Campus Companion (Stage 4 Prototype)
+# 19/11/2025
 
 This repository contains the functional prototype for **NovaWay**, a campus companion app developed for the IPM (Interação Pessoa-Máquina) course.
 
