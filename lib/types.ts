@@ -20,6 +20,7 @@ export interface CampusRoom {
   department: string; // e.g., "Computer Science"
   latitude: number;
   longitude: number;
+  indoorDirections?: string; // e.g., "2nd Floor, Left Wing"
 }
 
 // Defines the structure for a Study Space (for Task 3)

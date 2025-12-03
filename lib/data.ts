@@ -7,32 +7,36 @@ export const mockRooms: CampusRoom[] = [
     name: 'Room 101',
     building: 'Building I',
     department: 'Physics',
-    latitude: 38.661220 ,
-    longitude: -9.205922 ,
+    latitude: 38.661220,
+    longitude: -9.205922,
+    indoorDirections: 'Ground floor, first door on the right after the main entrance.', // <-- NEW
   },
   {
     id: 'r2',
     name: 'Room 102',
     building: 'Building I',
     department: 'Physics',
-    latitude: 38.661220 ,
-    longitude: -9.205922 ,
+    latitude: 38.661220,
+    longitude: -9.205922,
+    indoorDirections: 'Ground floor, second door on the right.', // <-- NEW
   },
   {
     id: 'r6',
     name: 'Room 103',
     building: 'Building I',
     department: 'Mathematics',
-    latitude: 38.66072 ,
-    longitude: -9.20604 ,
+    latitude: 38.66072,
+    longitude: -9.20604,
+    indoorDirections: 'Ground floor, at the end of the main hallway.', // <-- NEW
   },
   {
     id: 'r3',
     name: 'Room 201',
     building: 'Building II',
     department: 'Computer Science',
-    latitude: 38.661158 ,
-    longitude: -9.203210 ,
+    latitude: 38.661158,
+    longitude: -9.203210,
+    indoorDirections: '1st Floor. Take the stairs, turn left. It is the large lab on the corner.', // <-- NEW
   },
   {
     id: 'r4',
@@ -40,23 +44,26 @@ export const mockRooms: CampusRoom[] = [
     building: 'Building II',
     department: 'Computer Science',
     latitude: 38.661281,
-    longitude: -9.203311 ,
+    longitude: -9.203311,
+    indoorDirections: '1st Floor. Take the elevator to Level 1. Room is directly opposite the elevator.', // <-- NEW
   },
   {
     id: 'r5',
     name: 'Room 301',
     building: 'Building III',
     department: 'Chemistry',
-    latitude: 38.66245 ,
-    longitude: -9.20785 ,
+    latitude: 38.66245,
+    longitude: -9.20785,
+    indoorDirections: '2nd Floor. Chemistry Wing. Follow the blue signs for "Labs".', // <-- NEW
   },
   {
     id: 'r7',
     name: 'Room 127',
     building: 'Building I',
     department: 'Biology',
-    latitude: 38.661733 ,
-    longitude: -9.205797 ,
+    latitude: 38.661733,
+    longitude: -9.205797,
+    indoorDirections: 'Ground floor, near the rear exit facing the garden.', // <-- NEW
   }
 ];
 
@@ -135,14 +142,6 @@ export const mockStudySpaces: StudySpace[] = [
     roomId: 'r6',
   },
   {
-    id: 's3',
-    name: 'Room 201',
-    building: 'Building II',
-    capacity: 50,
-    occupation: 48, // Crowded
-    roomId: 'r3',
-  },
-  {
     id: 's4',
     name: 'Room 127',
     building: 'Building I',
@@ -150,4 +149,12 @@ export const mockStudySpaces: StudySpace[] = [
     occupation: 27, // Medium occupation
     roomId: 'r7',
   },
+  {
+    id: 's3',
+    name: 'Room 201',
+    building: 'Building II',
+    capacity: 50,
+    occupation: 48, // Crowded
+    roomId: 'r3',
+  }
 ];
