@@ -6,7 +6,7 @@ import { useParams } from 'next/navigation';
 import { mockEvents } from '@/lib/data';
 import SignUpModal from '@/components/SignUpModal';
 import { useBookmarks } from '@/lib/hooks/useBookmarks';
-import { useSignUps } from '@/lib/hooks/useSignUps'; // <-- 1. Import new hook
+import { useSignUps } from '@/lib/hooks/useSignUps';
 
 export default function EventDetailPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,14 +15,13 @@ export default function EventDetailPage() {
 
   // --- HOOKS ---
   const { isBookmarked, toggleBookmark } = useBookmarks();
-  const { isSignedUp, toggleSignUp } = useSignUps(); // <-- 2. Use new hook
+  const { isSignedUp, toggleSignUp } = useSignUps();
   
   const bookmarked = isBookmarked(eventId);
-  const signedUp = isSignedUp(eventId); // <-- 3. Check sign-up status
+  const signedUp = isSignedUp(eventId);
 
   const event = mockEvents.find((e) => e.id === eventId);
 
-  // --- UPDATED FUNCTION ---
   // This runs when the modal's "Confirm" button is clicked
   const handleSignUpAndSave = () => {
     // Only sign up if not already signed up
@@ -34,7 +33,6 @@ export default function EventDetailPage() {
       toggleBookmark(event!.id);
     }
   };
-  // -------------------------
 
   if (!event) {
     return <div className="p-4">Event not found.</div>;
@@ -42,7 +40,7 @@ export default function EventDetailPage() {
 
   return (
     <div className="p-4 pb-8">
-      {/* Event Details (no change) */}
+      {/* Event Details */}
       <span className="text-sm font-medium text-blue-600">
         {event.type.toUpperCase()}
       </span>
@@ -55,17 +53,16 @@ export default function EventDetailPage() {
 
       {/* Button container */}
       <div className="mt-8 flex flex-col gap-3">
-        {/* --- 4. UPDATED SIGN-UP BUTTON --- */}
+        {/* --- SMART SIGN-UP BUTTON --- */}
         <button
           onClick={() => {
             if (signedUp) {
-              // --- THIS IS THE FIX ---
-              // Now it cancels the sign-up AND removes the bookmark
+              // FIX FOR PROBLEM 4:
+              // Only remove the sign-up status. 
+              // We DO NOT call toggleBookmark() here anymore.
               toggleSignUp(event.id);
-              toggleBookmark(event.id); 
-              // -----------------------
             } else {
-              setIsModalOpen(true); // If not, open the form
+              setIsModalOpen(true); // If not signed up, open form
             }
           }}
           className={`w-full rounded-lg px-4 py-2.5 text-base font-medium transition-colors ${
@@ -77,7 +74,7 @@ export default function EventDetailPage() {
           {signedUp ? 'Cancel Sign-Up' : 'Sign Up Here'}
         </button>
 
-        {/* Save Event Button (no change) */}
+        {/* Save Event Button */}
         <button
           onClick={() => toggleBookmark(event.id)}
           className={`w-full rounded-lg px-4 py-2.5 text-base font-medium ${
@@ -90,7 +87,7 @@ export default function EventDetailPage() {
         </button>
       </div>
 
-      {/* Modal (no change) */}
+      {/* Modal */}
       <SignUpModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
